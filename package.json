@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
+    "eon-map": "^1.2.2",
     "express": "^4.15.3",
     "express-partials": "^0.3.0",
     "express-session": "^1.15.3",
