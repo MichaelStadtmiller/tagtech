@@ -1,27 +1,28 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var MongoDBStore = require('connect-mongodb-session')(session);
-var handler = require('request-handler');
+var handler = require('./lib/request-handler.js');
 
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //serve index
 app.get('/', handler.getIndex);
 
 //get users information
-app.get('/user_me', handler.getMe);
-app.get('/user_monster', handler.getMonsterInfo);
-app.get('/user_others', handler.getOthers);
+app.get('/users', handler.getUsers);
 
-//change user information
-app.put('/my_location', handler.updateLocation);
-app.put('unhold_me', handler.dropHold);
+//update user information
+app.put('last_request', handler.userCheckin)
+app.put('/user_location', handler.updateLocation);
 
 //for monster
 app.put('/add_monster', handler.addMonster);
 app.put('/drop_monster', handler.dropMonster);
+
+app.put('unhold_me', handler.dropHold);
 
 module.exports = app;
 
