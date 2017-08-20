@@ -34,16 +34,17 @@
 }
 </style>
 <script type="text/javascript"> 
-function initGeolocation() {
-  var entity = document.getElementById("user");
-  entity.components.sound.playSound();
- if (navigator && navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(newplayerCallback, errorCallback,{enableHighAccuracy:true,timeout:5000,maximumAge:5000});
-        } else {
-            console.log('Geolocation is not supported');
-        }
+  function initGeolocation() {
+    var entity = document.getElementById("user");
+    entity.components.sound.playSound();
+   if (navigator && navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(newplayerCallback, errorCallback,{enableHighAccuracy:true,timeout:5000,maximumAge:5000});
+          } else {
+              console.log('Geolocation is not supported');
+          }
+
+  }
   
-}
   function newplayerCallback(position){
       var newPlayer = {
       uid : Date.now(),
@@ -78,24 +79,37 @@ function initGeolocation() {
   function doTheStuff(){
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback,{enableHighAccuracy:true,timeout:5000,maximumAge:5000});
   }
+
   function getTheStuff(){
     $.ajax({
         url: '/users',
         type: 'GET',
-        success: function(player) {
-          var mapUrl = "http://maps.google.com/maps/api/staticmap?center=";
-            mapUrl = mapUrl + position.coords.latitude + ',' + position.coords.longitude;
-            mapUrl = mapUrl + '&zoom=18&size=512x512&maptype=roadmap&markers=color:green%7Clabel:P%7C' + position.coords.latitude + ',' + position.coords.longitude;
-            var imgElement = document.getElementById("map");
-            imgElement.setAttribute('material','src', mapUrl );    
-        
+        success: function(players) {
+          disperseInfo(players);
         },
         error: function() {
-          console.log('Failed to create new player')
+          console.log('Failed to get players')
         }
       });
   }
- 
+
+  function disperseInfo(players) {
+    
+    var monster = players.filter(function(player) {
+      return player.monster
+    });
+    
+    var humans = players.find(function(player) {
+      return !players.monster;
+    })
+    
+    humans.forEach(function(player){
+      mapUrl = mapUrl + '&zoom=18&size=512x512&maptype=roadmap&markers=color:green%7Clabel:P%7C' + player.lat + ',' + player.long;               
+    });
+  
+  }
+  
+  
 function errorCallback() {}
  
 function successCallback(position) {
