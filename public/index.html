@@ -98,14 +98,15 @@
       return player.monster
     });
 
-    var humans = players.find(function(player) {
+    var humans = players.filter(function(player) {
       return !players.monster;
     })
 
-    humans.forEach(function(player){
+      humans.forEach(function(player){
       mapUrl = mapUrl + '&markers=color:green%7Clabel:P%7C' + player.location.lat + ',' + player.location.long;
       var imgElement = document.getElementById("map");
       imgElement.setAttribute('material','src', mapUrl );
+      console.log(mapUrl);
     });
 
   }
@@ -150,7 +151,6 @@ function successCallback(position) {
   <a-entity id="user" camera look-controls map-component sound="src:#iwillkillyou; volume: 1">
     <a-entity id="map" geometry="primitive:plane" position="0 0 -1.1" rotation="-10 0 0" visible="false"  material="shader: flat; src: https://cdn.glitch.com/b4aaa609-f9dc-4ddc-b249-595ab6428aea%2FSCURRY.TECH.jpg?1503198919056"></a-entity>
   </a-entity>
-
   <a-sky color="red" opacity=".51">
     <a-animation attribute="opacity"
                dur="10000"
