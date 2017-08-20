@@ -7,8 +7,8 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-//serve index
-app.get('/', handler.getIndex);
+//create new user
+app.post('/newUser', handler.createUser);
 
 //get users information
 app.get('/users', handler.getUsers);

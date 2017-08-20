@@ -11,8 +11,8 @@ var PlayerSchema = mongoose.Schema({
   },
   monster: Boolean,
   distance : Number,
-  hold : {type: Date, default: null}
-  //dt_call_home: Date
+  hold : {type: Date, default: null},
+  dt_call_home: Date
 });
 
 var Player = mongoose.model('Players', PlayerSchema);
