@@ -12,7 +12,6 @@ var PlayerSchema = mongoose.Schema({
   monster: Boolean,
   distance : Number,
   hold : {type: Date, default: null},
-  //dt_create: Date,
   dt_call_home: Date
 });
 
