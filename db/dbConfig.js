@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-mongoURI = 'mongodb://localhost:27017/scurry'
+mongoURI = 'mongodb://104.236.125.76:27017/local';
 mongoose.connect(mongoURI);
-
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection err'));

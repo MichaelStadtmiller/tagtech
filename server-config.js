@@ -14,14 +14,17 @@ app.get('/', handler.getIndex);
 app.get('/users', handler.getUsers);
 
 //update user information
-app.put('last_request', handler.userCheckin)
+app.put('/last_request', handler.userCheckin)
 app.put('/user_location', handler.updateLocation);
 
 //for monster
 app.put('/add_monster', handler.addMonster);
 app.put('/drop_monster', handler.dropMonster);
 
-app.put('unhold_me', handler.dropHold);
+app.post('/unhold_me', handler.dropHold);
+
+app.get('/get12346', handler.get12346);
+
 
 module.exports = app;
 

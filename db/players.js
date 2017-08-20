@@ -1,18 +1,21 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var db = require('dbConfig');
+mongoose.Promise = require('bluebird');
 
-var PlayerSchema = new Schema({
-  uid : String;
+var db = require('./dbConfig');
+
+var PlayerSchema = mongoose.Schema({
+  uid : String,
   location : {
-    x : Number,
-    y : Number
+    lat : Number,
+    long : Number
   },
   monster: Boolean,
   distance : Number,
-  hold : {type: Date, default: Date.now()}
+  hold : {type: Date, default: null}//,
+  //dt_create: Date,
+  //dt_call_home: Date
 });
 
-var Player = mongoose.model('Player', PlayerSchema);
+var Player = mongoose.model('Players', PlayerSchema);
 
 module.exports = Player;
