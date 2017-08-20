@@ -121,7 +121,7 @@ function successCallback(position) {
       $.ajax({
         url: '/user_location',
         type: 'PUT',
-        data: JSON.stringify(newPlayer),
+        data: JSON.stringify(playerUpdate),
         contentType: 'application/json',
         success: function(player) {
           var mapUrl = "http://maps.google.com/maps/api/staticmap?center=";
