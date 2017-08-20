@@ -21,7 +21,7 @@ app.put('/user_location', handler.updateLocation);
 app.put('/add_monster', handler.addMonster);
 app.put('/drop_monster', handler.dropMonster);
 
-app.post('/unhold_me', handler.dropHold);
+app.put('/unhold_me', handler.dropHold);
 
 module.exports = app;
 
