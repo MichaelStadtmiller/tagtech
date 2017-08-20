@@ -23,8 +23,5 @@ app.put('/drop_monster', handler.dropMonster);
 
 app.post('/unhold_me', handler.dropHold);
 
-app.get('/get12346', handler.get12346);
-
-
 module.exports = app;
 
