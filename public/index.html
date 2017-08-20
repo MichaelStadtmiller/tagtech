@@ -33,7 +33,7 @@
     background-color: #666;
 }
 </style>
-<script type="text/javascript"> 
+<script type="text/javascript">
   function initGeolocation() {
     var entity = document.getElementById("user");
     entity.components.sound.playSound();
@@ -44,7 +44,6 @@
           }
 
   }
-  
   function newplayerCallback(position){
       var newPlayer = {
       uid : Date.now(),
@@ -69,7 +68,7 @@
             doTheStuff();
             getTheStuff();
           }, 5000);
-        },        
+        },
         error: function() {
           console.log('Failed to create new player')
         }
@@ -94,24 +93,24 @@
   }
 
   function disperseInfo(players) {
-    
+
     var monster = players.filter(function(player) {
       return player.monster
     });
-    
+
     var humans = players.find(function(player) {
       return !players.monster;
     })
-    
+
     humans.forEach(function(player){
-      mapUrl = mapUrl + '&markers=color:green%7Clabel:P%7C' + player.location.lat + ',' + player.location.long;   
+      mapUrl = mapUrl + '&markers=color:green%7Clabel:P%7C' + player.location.lat + ',' + player.location.long;
       var imgElement = document.getElementById("map");
-      imgElement.setAttribute('material','src', mapUrl );    
+      imgElement.setAttribute('material','src', mapUrl );
     });
-  
+
   }
-  
-  
+
+
 function errorCallback() {}
  
 function successCallback(position) {
@@ -128,7 +127,7 @@ function successCallback(position) {
         success: function(player) {
           var mapUrl = "http://maps.google.com/maps/api/staticmap?center=";
             mapUrl = mapUrl + position.coords.latitude + ',' + position.coords.longitude;
-            mapUrl = mapUrl + '&zoom=18&size=512x512&maptype=roadmap&markers=color:green%7Clabel:P%7C' + position.coords.latitude + ',' + position.coords.longitude;        
+            mapUrl = mapUrl + '&zoom=18&size=512x512&maptype=roadmap
         },
         error: function() {
           console.log('Failed to create new player')
